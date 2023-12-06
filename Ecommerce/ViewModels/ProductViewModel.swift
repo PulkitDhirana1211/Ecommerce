@@ -17,7 +17,6 @@ class ProductViewModel: ObservableObject {
             DispatchQueue.main.async {[weak self] in
                 self?.products = responseProducts
             }
-            print(products.count)
         } catch {
             print("Product Fetch Error", error)
         }

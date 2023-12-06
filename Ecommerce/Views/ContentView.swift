@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var viewModel = ProductViewModel()
-    @StateObject var cartManager = CartManager()
+    @State var isActive : Bool = false
+    @StateObject private var viewModel = ProductViewModel()
+    @StateObject private var cartManager = CartManager()
     
     var columns = [GridItem(.adaptive(minimum: 160), spacing: 20)]
     
@@ -27,14 +28,14 @@ struct ContentView: View {
             }
             .navigationTitle("Products")
             .toolbar {
-                NavigationLink {
-                    CartView()
+                NavigationLink (
+                    destination: CartView()
                         .environmentObject(cartManager)
-                } label: {
+                ) {
                     CartButton(numberOfProducts: cartManager.products.count)
                         .foregroundStyle(Color(UIColor.label))
                 }
-
+                .isDetailLink(false)
             }
         }
         .task {

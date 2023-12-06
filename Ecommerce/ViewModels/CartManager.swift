@@ -12,8 +12,8 @@ class CartManager: ObservableObject {
     @Published private(set) var total: Double = 0.0
     
     func addToCart(product: ProductsModel) {
-        products.append(product)
-        total += product.price
+            products.append(product)
+            total += product.price
     }
     
     func removeFromCart(product: ProductsModel) {

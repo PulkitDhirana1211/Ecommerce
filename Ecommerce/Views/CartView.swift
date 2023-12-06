@@ -9,9 +9,10 @@ import SwiftUI
 
 struct CartView: View {
     @State private var isButtonClicked: Bool = false
-    @State private var paymentSucceed: Bool = false
+    @State private var proceed: Bool = false
 
     @EnvironmentObject var cartManager: CartManager
+    
     var body: some View {
         ScrollView {
             if cartManager.products.count > 0 {
@@ -30,11 +31,11 @@ struct CartView: View {
                         NavigationLink {
                             PaymentSuccessView()
                         } label: {
-                            PaymentButton2 {
+                            PaymentButton2(text: "Proceed to Buy") {
                                 isButtonClicked.toggle()
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                    paymentSucceed.toggle()
+                                    proceed.toggle()
                                 }
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.7) {
                                     isButtonClicked.toggle()
@@ -50,7 +51,7 @@ struct CartView: View {
                             .frame(height: 100)
                             .padding(.vertical, 12)
                     }
-                    .navigationDestination(isPresented: $paymentSucceed) {
+                    .navigationDestination(isPresented: $proceed) {
                         AddressView()
                     }
 

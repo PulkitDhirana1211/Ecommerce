@@ -10,12 +10,14 @@ import SwiftUI
 @main
 struct EcommerceApp: App {
     
-    @StateObject var vm = CartManager()
+    @StateObject private var vm = CartManager()
+//    @StateObject private var dataController = DataController()
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
+//                    .environment(\.managedObjectContext, dataController.container.viewContext)
             }
             .environmentObject(vm)
         }

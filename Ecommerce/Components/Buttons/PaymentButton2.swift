@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct PaymentButton2: View {
+    var text: String
     var action: () -> Void
     var body: some View {
         Button {
             action()
         } label: {
-            Text("Proceed to Buy")
+            Text(text)
                 .padding(.vertical, 12)
                 .frame(maxWidth: .infinity)
                 .background(Color("buttonColor"))
@@ -24,5 +25,5 @@ struct PaymentButton2: View {
 }
 
 #Preview {
-    PaymentButton2(action: {})
+    PaymentButton2(text: "Proceed to Buy", action: {})
 }
